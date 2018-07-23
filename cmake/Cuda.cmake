@@ -259,6 +259,10 @@ caffe_select_nvcc_arch_flags(NVCC_FLAGS_EXTRA)
 list(APPEND CUDA_NVCC_FLAGS ${NVCC_FLAGS_EXTRA})
 message(STATUS "Added CUDA NVCC flags for: ${NVCC_FLAGS_EXTRA_readable}")
 
+# add C++11 support
+list(APPEND CUDA_NVCC_FLAGS "-std=c++11")
+set(CUDA_PROPAGATE_HOST_FLAGS off)
+
 # Boost 1.55 workaround, see https://svn.boost.org/trac/boost/ticket/9392 or
 # https://github.com/ComputationalRadiationPhysics/picongpu/blob/master/src/picongpu/CMakeLists.txt
 if(Boost_VERSION EQUAL 105500)
