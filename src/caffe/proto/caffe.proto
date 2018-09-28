@@ -410,6 +410,7 @@ message LayerParameter {
   optional ROIPoolingParameter roi_pooling_param = 8266711;
   optional SmoothL1LossParameter smooth_l1_loss_param = 8266712;
   optional ProposalParameter proposal_param = 8266713;
+  optional NormalizeParameter norm_param = 6666666;
 }
 
 message PairFastLossParameter {
@@ -1457,3 +1458,15 @@ message PReLUParameter {
   // Whether or not slope parameters are shared across channels.
   optional bool channel_shared = 2 [default = false];
 }
+
+// Message that stores parameters used by NormalizeLayer
+message NormalizeParameter {
+  optional bool across_spatial = 1 [ default = true ];
+  // Initial value of scale. Default is 1.0 for all
+  optional FillerParameter scale_filler = 2;
+  // Whether or not scale parameters are shared across channels.
+  optional bool channel_shared = 3 [ default = true ];
+  // Epsilon for not dividing by zero while normalizing variance
+  optional float eps = 4 [ default = 1e-10 ];
+}
+
